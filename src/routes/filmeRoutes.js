@@ -13,6 +13,18 @@ router.get('/', (req, res) => {
     }
 });
 
+router.get('/BuscarFilmePorId/:id'), (req, res) =>{
+    try{
+        const filmeEncontrado = filme.BuscarFilmePorId(req, res, req.params.id);
+        if (!filmeEncontrado){
+            return res.status(404).json({erro: 'Filme não encontrado'});
+        }
+        res.json(filmeEncontrado);        
+    }
+    catch(err){
+        res.status(500).json({erro: err.message});
+    }
+}
 
 router.post('/', (req, res) => {
     try{

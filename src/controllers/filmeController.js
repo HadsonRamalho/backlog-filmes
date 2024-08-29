@@ -9,6 +9,15 @@ class filmes{
             res.status(500).json({erro: err.message});
         }
     }
+    async BuscarFilmePorId(req, res, id){
+        try {
+            const filme = await filmeModel.findByPk(id);
+            res.json(filme);
+        }
+        catch(err){
+            res.status(500).json({erro: err.message});
+        }
+    }
     async CadastrarFilme(req, res){
         try{
             const FilmeCadastrado = await filmeModel.create(req.body);
